@@ -10,19 +10,49 @@
 <body>
     <header></header>
     <main>
-        <table id="book-library">
-            <caption>
-                Lewis' book library
-              </caption>
-            <thead>
-                <th scope="col">Title</th>
-                <th scope="col">Author</th>
-                <th scope="col">Pages</th>
-                <th scope="col">Read</th>
-            </thead>
-            <tbody id="table-body">
-            </tbody>
-        </table>
+        <button data-modal-target="#modal">Add new book</button>
+        <div class="modal" id="modal">
+            <div class="modal-header">
+                <button data-close-button class="close-button">&times;</button>
+            </div>
+            <form class="form-container" action="#">
+                <div class="input-container">
+                    <label for="title">Title</label>
+                    <input type="text" id="title" name="title" required>
+                </div>
+                <div class="input-container">
+                    <label for="author">Author</label>
+                    <input type="text" id="author" name="author" required>
+                </div>
+                <div class="input-container">
+                    <label for="pages">Pages</label>
+                    <input type="number" id="pages" name="pages" required>
+                </div>
+                <div class="input-container">
+                    <label for="read">Have you read the book?</label>
+                    <input type="checkbox" name="read" id="read">
+                </div>
+                <div class="input-container">
+                    <button type="button">Submit</button>
+                </div>
+            </form>
+        </div>
+        <div class="table-container">
+            <table id="book-library">
+                <caption>
+                    Lewis' book library
+                  </caption>
+                <thead>
+                    <th scope="col">Title</th>
+                    <th scope="col">Author</th>
+                    <th scope="col">Pages</th>
+                    <th scope="col">Read</th>
+                </thead>
+                <tbody id="table-body">
+                </tbody>
+            </table>
+        </div>
+        <div id="overlay"></div>
     </main>
     <script src="script.js" async defer></script>
 </body>

@@ -27,3 +27,58 @@ table {
     border: black solid 1px;
     text-align: center;
   }
+
+
+  .modal {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0);
+    transition: 200ms ease-in-out;
+    border: black solid 1px;
+    width: 40%;
+    height: 50%;
+    z-index: 10;
+    background-color: antiquewhite;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .modal.active {
+    transform: translate(-50%, -50%) scale(1);
+  }
+
+  .modal-header {
+    display: flex;
+    justify-content: flex-end;
+    width: 100%;
+  }
+  
+  .form-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border: black solid 1px;
+    gap: 10px;
+    flex: 1;
+  }
+
+  #overlay {
+    position: fixed;
+    opacity: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, .5);
+    pointer-events: none;
+    transition: 200ms ease-in-out;
+  }
+
+  #overlay.active {
+    opacity: 1;
+    pointer-events: all;
+  }
+
+  

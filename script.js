@@ -1,7 +1,7 @@
+// book add and table population *******************************************
+
 const TABLE_BODY = document.getElementById('table-body');
 const TABLE_ROW = document.getElementsByTagName('tr');
-
-
 myLibrary = [];
 
 function Book(title, author, pages, read) {
@@ -43,6 +43,39 @@ let exampleBookTwo = new Book('title 2', 'Lewis', 250, 'yes');
 
 document.addEventListener('click', addBookToLibrary(exampleBook));
 document.addEventListener('click', addBookToLibrary(exampleBookTwo));
+
+// modal functions and buttons*******************************************
+
+const openModalButton = document.querySelectorAll('[data-modal-target]')
+const closeModalButton = document.querySelectorAll('[data-close-button]')
+const overlay = document.getElementById('overlay')
+
+openModalButton.forEach(button => {
+    button.addEventListener('click', () => {
+        openModal();
+    })
+})
+
+closeModalButton.forEach(button => {
+    button.addEventListener('click', () => {
+        closeModal();
+    })
+})
+
+overlay.addEventListener('click', () => {
+    closeModal();
+}
+)
+
+function openModal() {
+    document.getElementById('modal').classList.add('active');
+    document.getElementById('overlay').classList.add('active');
+}
+
+function closeModal() {
+    document.getElementById('modal').classList.remove('active');
+    document.getElementById('overlay').classList.remove('active');
+}
 
 
 
