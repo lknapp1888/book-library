@@ -15,26 +15,28 @@
             <div class="modal-header">
                 <button data-close-button class="close-button">&times;</button>
             </div>
-            <form class="form-container" action="#">
-                <div class="input-container">
-                    <label for="title">Title</label>
-                    <input type="text" id="title" name="title" required>
-                </div>
-                <div class="input-container">
-                    <label for="author">Author</label>
-                    <input type="text" id="author" name="author" required>
-                </div>
-                <div class="input-container">
-                    <label for="pages">Pages</label>
-                    <input type="number" id="pages" name="pages" required>
-                </div>
-                <div class="input-container">
-                    <label for="read">Have you read the book?</label>
-                    <input type="checkbox" name="read" id="read">
-                </div>
-                <div class="input-container">
-                    <button type="button">Submit</button>
-                </div>
+            <form class="form-container">
+                <ul>
+                    <li class="input-container">
+                        <label for="title">Title</label>
+                        <input type="text" id="title" name="title" required placeholder="The title of the book">
+                    </li>
+                    <li class="input-container">
+                        <label for="author">Author</label>
+                        <input type="text" id="author" name="author" required placeholder="The Author of the book">
+                    </li>
+                    <li class="input-container">
+                        <label for="pages">Pages</label>
+                        <input type="number" id="pages" name="pages" required placeholder="the number of pages">
+                    </li>
+                    <li class="input-container">
+                        <label for="read">Have you read the book?</label>
+                        <input type="checkbox" name="read" id="read">
+                    </li>
+                    <li class="input-container">
+                        <button id="form-submit" type="button">Submit</button>
+                    </li>
+                </ul>
             </form>
         </div>
         <div class="table-container">
@@ -47,6 +49,7 @@
                     <th scope="col">Author</th>
                     <th scope="col">Pages</th>
                     <th scope="col">Read</th>
+                    <th scope="col">Delete</th>
                 </thead>
                 <tbody id="table-body">
                 </tbody>
