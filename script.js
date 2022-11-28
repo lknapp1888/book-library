@@ -3,14 +3,21 @@ const TABLE_BODY = document.getElementById('table-body');
 const TABLE_ROW = document.getElementsByTagName('tr');
 myLibrary = [];
 
-function Book(title, author, pages, read) {
-    let haveRead = '';
-    (read === true) ? haveRead = 'Yes' : haveRead = 'No';
+function Book(title, author, pages) {
     this.title = title;
     this.author = author;
     this.pages = pages;
-    this.read = haveRead;
+    this.read = false;
 }
+
+Book.prototype.toggleRead = function() {
+    (this.read === false) ? this.read = true : this.read = false;   
+}
+
+let exampleBook = new Book('new book title', 'Lewis', 250);
+console.log(exampleBook)
+
+myLibrary.push(exampleBook);
 
 function addBookToLibrary(book) {
     myLibrary.push(book);
@@ -44,6 +51,7 @@ function tableCompile(book) {
         NEW_CELL_FOUR.textContent = book[i].read;
         NEW_CELL_ONE.classList.add(`read-${i}`)
 
+
         let NEW_CELL_FIVE = document.createElement('td');
         NEW_ROW.appendChild(NEW_CELL_FIVE);
         let deleteBox = document.createElement('button')
@@ -51,12 +59,29 @@ function tableCompile(book) {
         deleteBox.classList.add(`delete-btn`);
         deleteBox.setAttribute('data-id', `${i}`);
         NEW_CELL_FIVE.appendChild(deleteBox);
+
+        let tempReadToggle = document.createElement('button')
+        tempReadToggle.textContent = 'tempToggle';
+        tempReadToggle.classList.add(`toggle-btn`);
+        tempReadToggle.setAttribute('data-id', `${i}`);
+        NEW_CELL_FIVE.appendChild(tempReadToggle);
     }
     const deleteBtns = document.querySelectorAll('.delete-btn');
     deleteBtns.forEach(e => {
         e.addEventListener('click', () => {
             let bookIndexNum = e.dataset.id;
             myLibrary.splice(bookIndexNum, 1);
+            console.log(myLibrary)
+            console.log(e.dataset.id)
+            tableCompile(myLibrary);
+        }
+        )
+    })
+    const toggleBtns = document.querySelectorAll('.toggle-btn');
+    toggleBtns.forEach(e => {
+        e.addEventListener('click', () => {
+            let bookIndexNum = e.dataset.id;
+            myLibrary[bookIndexNum].toggleRead()
             console.log(myLibrary)
             console.log(e.dataset.id)
             tableCompile(myLibrary);
@@ -70,9 +95,6 @@ function tableCompile(book) {
         e.addEventListener('click', console.log(deleteBtn))
     }) */
 
-let exampleBook = new Book('new book title', 'Lewis', 250, true);
-
-myLibrary.push(exampleBook);
 
 // document.addEventListener('click', addBookToLibrary(exampleBook));
 
@@ -123,9 +145,11 @@ SUBMIT_BOOK.addEventListener('click', e => {
     //if title invalid or blank, add validation message
     ///if pages blank, add validation message
     let tempBook = new Book(e.path[3][0].value, e.path[3][1].value, 
-        e.path[3][2].value, e.path[3][3].checked);
+        e.path[3][2].value);
+    if (READ_INPUT.checked) {tempBook.toggleRead()};
     addBookToLibrary(tempBook);
     closeModal();
+    //reset the form so it is blank
     TITLE_INPUT.value = "";
     AUTHOR_INPUT.value = "";
     PAGES_INPUT.value = "";
