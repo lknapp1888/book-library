@@ -8,9 +8,13 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <header></header>
+    <header>
+        <div class="header-container">
+            <h1>Book library</h1>
+            <button id="modal-btn" class="std-btn" data-modal-target="#modal">Add new book!</button>
+        </div>
+    </header>
     <main>
-        <button data-modal-target="#modal">Add new book</button>
         <div class="modal" id="modal">
             <div class="modal-header">
                 <button data-close-button class="close-button">&times;</button>
@@ -19,36 +23,33 @@
                 <ul>
                     <li class="input-container">
                         <label for="title">Title</label>
-                        <input type="text" id="title" name="title" required placeholder="The title of the book">
+                        <input type="text" id="title" name="title" maxlength=150 required placeholder=" The title of the book">
                     </li>
                     <li class="input-container">
                         <label for="author">Author</label>
-                        <input type="text" id="author" name="author" required placeholder="The Author of the book">
+                        <input type="text" id="author" name="author" maxlength=50 required placeholder=" The Author of the book">
                     </li>
                     <li class="input-container">
                         <label for="pages">Pages</label>
-                        <input type="number" id="pages" name="pages" required placeholder="the number of pages">
+                        <input type="number" id="pages" name="pages" max=1000000 required placeholder=" The number of pages">
                     </li>
                     <li class="input-container">
                         <label for="read">Have you read the book?</label>
                         <input type="checkbox" name="read" id="read">
                     </li>
                     <li class="input-container">
-                        <button id="form-submit" type="button">Submit</button>
+                        <button class="std-btn" id="form-submit" type="button">Submit</button>
                     </li>
                 </ul>
             </form>
         </div>
         <div class="table-container">
             <table id="book-library">
-                <caption>
-                    Lewis' book library
-                  </caption>
                 <thead>
                     <th scope="col">Title</th>
                     <th scope="col">Author</th>
                     <th scope="col">Pages</th>
-                    <th scope="col">Read</th>
+                    <th scope="col">Read (click to toggle)</th>
                     <th scope="col">Delete</th>
                 </thead>
                 <tbody id="table-body">
@@ -57,6 +58,9 @@
         </div>
         <div id="overlay"></div>
     </main>
+    <div class="footer-container">
+        <footer>By Lewis Knapp</footer>
+    </div>
     <script src="script.js" async defer></script>
 </body>
 </html>

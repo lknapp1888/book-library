@@ -1,8 +1,67 @@
+* {
+  --background-color: #white;
+  --secondary-color: white;
+  --border-color: #86198f;
+  --modal-text-color: black;
+  --not-read-color: red;
+  --read-color: green;
+
+  font-family: manrope;
+}
+
+@font-face {
+  font-family: 'manrope';
+  src: url(fonts/Manrope-VariableFont_wght.ttf);
+  font-style: normal;
+}
+
+body {
+  padding: 0px;
+  margin: 0px;
+  display: flex;
+  flex-direction: column;
+}
+
+main {
+overflow: auto;
+height: 75vh;
+}
+
+.footer-container {
+  display: flex;
+  justify-content: center;
+  height: fit-content
+}
+
+header {
+  height: var(--header-height);
+}
+
+header, .header-container {
+  display: flex;
+  justify-content: center;
+  padding: max(15px);
+  background-color: var(--background-color);
+}
+
+.header-container {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+
+h1 {
+  font-size: 3em;
+}
+
 table {
     table-layout: fixed;
     width: 100%;
-    border-collapse: collapse;
-    border: 3px solid purple;
+    border-spacing: 0;
+  }
+
+  .table-container {
+    padding: 2em;
   }
   
   thead th:nth-child(1) {
@@ -28,9 +87,74 @@ table {
   th,
   td {
     padding: 20px;
-    border: black solid 1px;
     text-align: center;
+    border-bottom: #86198f 1px solid;
   }
+
+  .std-btn, .toggle-btn {
+    appearance: none;
+    background-color: transparent;
+    border-radius: 15px;
+    box-sizing: border-box;
+    color: black;
+    cursor: pointer;
+    display: inline-block;
+    font-size: 16px;
+    font-weight: 600;
+    line-height: normal;
+    margin: 0;
+    min-height: 60px;
+    outline: none;
+    padding: 16px 24px;
+    text-align: center;
+    text-decoration: none;
+    transition: all 300ms cubic-bezier(.23, 1, 0.32, 1);
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    width: clamp(75px, 100%, 250px);
+    will-change: transform;
+}
+
+.std-btn {
+  border: 2px solid var(--border-color);
+}
+.toggle-btn.read {
+  border: 2px solid var(--read-color);
+}
+.toggle-btn.not-read {
+  border: 2px solid var(--not-read-color);
+}
+
+.std-btn:disabled, .toggle-btn:disabled {
+  pointer-events: none;
+}
+
+.std-btn:hover, .toggle-btn:hover {
+  color: #fff;
+  background-color: var(--border-color);
+  box-shadow: rgba(0, 0, 0, 0.25) 0 8px 15px;
+  transform: translateY(-2px);
+}
+
+.std-btn:hover {
+  background-color: var(--border-color);
+}
+.toggle-btn.read:hover {
+  border: 2px solid var(--read-color);
+  background-color: var(--read-color);
+}
+
+.toggle-btn.not-read:hover {
+  border: 2px solid var(--not-read-color);
+  background-color: var(--not-read-color);
+}
+
+.std-btn:active, .toggle-btn:active {
+  box-shadow: none;
+  transform: translateY(0);
+}
+
 
 
   .modal {
@@ -39,11 +163,10 @@ table {
     left: 50%;
     transform: translate(-50%, -50%) scale(0);
     transition: 200ms ease-in-out;
-    border: black solid 1px;
-    width: 40%;
+    width: clamp( 230px, 40%, 500px);
     height: 50%;
     z-index: 10;
-    background-color: antiquewhite;
+    background-color: var(--secondary-color);
     display: flex;
     flex-direction: column;
   }
@@ -63,9 +186,44 @@ table {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    border: black solid 1px;
     gap: 10px;
     flex: 1;
+  }
+
+  .table-row td {
+    font-size: 1.5em;
+  }
+
+  .form-container ul {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0px;
+    padding: 0px;
+    gap: clamp(0px, 20px, 20px);
+    border-radius: 4px;
+  }
+
+  .input-container {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+  }
+
+  .input-container label {
+    color: var(--modal-text-color);
+    font-size: 1.25em;
+  }
+
+  .input-container input {
+    border: 1px solid var(--border-color);
+    border-radius: 5px;
+    height: 25px;
+  }
+  
+  input[type="checkbox"] {
+    accent-color: var(--border-color);    
   }
 
   #overlay {
@@ -84,5 +242,7 @@ table {
     opacity: 1;
     pointer-events: all;
   }
+
+
 
   

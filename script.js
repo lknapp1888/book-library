@@ -14,11 +14,6 @@ Book.prototype.toggleRead = function() {
     (this.read === false) ? this.read = true : this.read = false;   
 }
 
-let exampleBook = new Book('new book title', 'Lewis', 250);
-console.log(exampleBook)
-
-myLibrary.push(exampleBook);
-
 function addBookToLibrary(book) {
     myLibrary.push(book);
     tableCompile(myLibrary)
@@ -32,6 +27,7 @@ function tableCompile(book) {
         let NEW_ROW = document.createElement('tr');
         TABLE_BODY.appendChild(NEW_ROW);
         NEW_ROW.classList.add(`entry-${i}`);
+        NEW_ROW.classList.add(`table-row`);
         NEW_ROW.setAttribute('data-id', `${i}`);
 
         let NEW_CELL_ONE = document.createElement('td');
@@ -48,31 +44,36 @@ function tableCompile(book) {
 
         let NEW_CELL_FOUR = document.createElement('td');
         NEW_ROW.appendChild(NEW_CELL_FOUR);
-        NEW_CELL_FOUR.textContent = book[i].read;
+        //NEW_CELL_FOUR.textContent = book[i].read;
         NEW_CELL_ONE.classList.add(`read-${i}`)
 
+        let tempReadToggle = document.createElement('button')
+        if (book[i].read === true) {
+            tempReadToggle.textContent = 'Read'
+            tempReadToggle.classList.add('read');}
+        if (book[i].read === false) {
+            tempReadToggle.textContent = 'Not read';
+            tempReadToggle.classList.add('not-read');}
+        tempReadToggle.classList.add(`toggle-btn`);
+        tempReadToggle.setAttribute('data-id', `${i}`);
+        NEW_CELL_FOUR.appendChild(tempReadToggle);
 
         let NEW_CELL_FIVE = document.createElement('td');
         NEW_ROW.appendChild(NEW_CELL_FIVE);
         let deleteBox = document.createElement('button')
         deleteBox.textContent = 'delete entry';
         deleteBox.classList.add(`delete-btn`);
+        deleteBox.classList.add(`std-btn`);
         deleteBox.setAttribute('data-id', `${i}`);
         NEW_CELL_FIVE.appendChild(deleteBox);
 
-        let tempReadToggle = document.createElement('button')
-        tempReadToggle.textContent = 'tempToggle';
-        tempReadToggle.classList.add(`toggle-btn`);
-        tempReadToggle.setAttribute('data-id', `${i}`);
-        NEW_CELL_FIVE.appendChild(tempReadToggle);
+
     }
     const deleteBtns = document.querySelectorAll('.delete-btn');
     deleteBtns.forEach(e => {
         e.addEventListener('click', () => {
             let bookIndexNum = e.dataset.id;
             myLibrary.splice(bookIndexNum, 1);
-            console.log(myLibrary)
-            console.log(e.dataset.id)
             tableCompile(myLibrary);
         }
         )
@@ -82,21 +83,11 @@ function tableCompile(book) {
         e.addEventListener('click', () => {
             let bookIndexNum = e.dataset.id;
             myLibrary[bookIndexNum].toggleRead()
-            console.log(myLibrary)
-            console.log(e.dataset.id)
             tableCompile(myLibrary);
         }
         )
     })
 }
-
-
-/*    deleteBtns.forEach(e => {
-        e.addEventListener('click', console.log(deleteBtn))
-    }) */
-
-
-// document.addEventListener('click', addBookToLibrary(exampleBook));
 
 // modal functions and buttons*******************************************
 
